@@ -15,6 +15,7 @@ jobs:
         with: {python-version: "3.12"}
       - run: pip install jupyterlite-core jupyterlite-pyodide-kernel jupyter-server ipywidgets   # server: adds the notebooks; ipywidgets: the sliders
       - run: jupyter lite build --contents notebooks --output-dir dist
+      - run: if [ -d cheatsheets ]; then cp -r cheatsheets dist/; fi   # the courses' cheat sheet PDFs, linked from descriptions
       - uses: actions/upload-pages-artifact@v3
         with: {path: dist}
   deploy:
